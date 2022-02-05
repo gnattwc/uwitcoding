@@ -10,7 +10,7 @@ class LoadMocksRandom(LoadDnsDbInterface):
     def __call__(self):
         pass
 
-    def mock_dns_record():
+    def mock_dns_record(self):
         pass
         # type = choice(SAMPLE_TYPE)
         # match type:
