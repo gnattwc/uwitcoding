@@ -3,7 +3,7 @@ from dataclasses import asdict
 
 from dns import DnsRecord
 
-# sample: DnsRecord(fqdn='www.uwmedicine.org.', type='TXT', data='THE UW Medicine')
+# sample: DnsRecord(name='www.uwmedicine.org.', type='TXT', data='THE UW Medicine')
 
 # these functions are used to determine search score - higher the better
 
@@ -26,7 +26,7 @@ def search_db_fields_only(r: DnsRecord, *terms) -> int:
     return sum(counts)
 
 
-def search_db_all_text_by_type(r: DnsRecord, *terms, type='fqdn') -> int:
+def search_db_all_text_by_type(r: DnsRecord, *terms, type='CNAME') -> int:
     # str.count on DnsRecord's string limited by type
     counts = (str(r).count(t) for t in terms if r.type.lower() == type.lower())
     return sum(counts)

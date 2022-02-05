@@ -12,7 +12,7 @@ SAMPLE_DNS = [
     ("washington.edu.", "A", "128.208.5.219"),
     ("uw.edu.", "CNAME", "x3dard.uw.edu"),
     ("www.uwmedicine.org.", "TXT", "THE UW Medicine"),
-    ("english.washington.edu.", "CNAME", "192.168.1.45"),
+    ("www.english.washington.edu", "CNAME", "english.washington.edu."),
     ("v23488023.s.uw.edu.", "TXT", "reserved by someone"),
     ("uwitconnect", "CNAME", "itconnect.uw.edu."),
 ]

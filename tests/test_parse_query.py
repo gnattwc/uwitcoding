@@ -9,7 +9,7 @@ from loaddnsdb import LoadMocksBasic
 import searchdb
 from parse_query import parse_query
 
-# sample: DnsRecord(fqdn='www.uwmedicine.org.', type='TXT', data='THE UW Medicine')
+# sample: DnsRecord(name='www.uwmedicine.org.', type='TXT', data='THE UW Medicine')
 
 
 def has_match(search_str, dict):

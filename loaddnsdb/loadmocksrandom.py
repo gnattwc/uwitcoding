@@ -16,10 +16,10 @@ class LoadMocksRandom(LoadDnsDbInterface):
         # match type:
         #     case "CNAME":
 
-        #     fqdn = choice(SAMPLE_FQDN)
+        #     name = choice(SAMPLE_NAME)
 
 
-SAMPLE_FQDN = [
+SAMPLE_NAME = [
     "washington.edu.",
     "uw.edu.",
     "www.uwmedicine.org.",
