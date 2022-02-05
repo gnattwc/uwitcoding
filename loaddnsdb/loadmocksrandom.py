@@ -1,13 +1,14 @@
-from loadmocks.loadmocks import LoadMocksInterface
+from loaddnsdb.loaddnsdb import LoadDnsDbInterface
 from dns.dnsdatabase import DnsRecord
 from random import choice, randint
 
-class LoadMocksRandom(LoadMocksInterface):
+
+class LoadMocksRandom(LoadDnsDbInterface):
     def __init__(self, size=100):
         self.size = 100
 
     def __call__(self):
-        return ()
+        pass
 
     def mock_dns_record():
         pass
@@ -31,6 +32,7 @@ SAMPLE_TYPE = [
     "CNAME",
     "TXT",
 ]
+
 
 def gen_ip():
     ip = ".".join(map(str, (randint(0, 255) for _ in range(4))))

@@ -1,2 +1,2 @@
 from .dnsdatabase import DnsDatabase
-from .dnsdatabase import DnsRecord
+from .dnsrecord import DnsRecord
