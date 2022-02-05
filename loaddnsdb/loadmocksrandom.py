@@ -19,7 +19,7 @@ class LoadMocksRandom(LoadDnsDbInterface):
         #     name = choice(SAMPLE_NAME)
 
 
-SAMPLE_NAME = [
+SAMPLE_FQDN = [
     "washington.edu.",
     "uw.edu.",
     "www.uwmedicine.org.",
