@@ -28,17 +28,16 @@ def are_scores_descending(matches):
 @ddt
 class AllTextSearchTest(unittest.TestCase):
     """test DnsDatabase.search()"""
-    lock = Lock()
     dns_db = None
 
     @classmethod
-    def get_db(cls):
-        if AllTextSearchTest.dns_db is None:
-            AllTextSearchTest.lock.acquire()
-            load_mocks = LoadMocksBasic()
-            cls.dns_db = DnsDatabase(load_mocks(), searchdb.search_db_all_text_lower)
-            AllTextSearchTest.lock.release()
-        return AllTextSearchTest.dns_db
+    def setUpClass(cls):
+        load_mocks = LoadMocksBasic()
+        cls.dns_db = DnsDatabase(load_mocks(), searchdb.search_db_all_text_lower)
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.dns_db = None
 
     @data(
         ("washington",),
@@ -60,6 +59,6 @@ class AllTextSearchTest(unittest.TestCase):
     @unpack
     def test_search_str_descending(self, search_str):
         terms = search_str.split()
-        matches = AllTextSearchTest.get_db().search(*terms)
+        matches = AllTextSearchTest.dns_db.search(*terms)
         assert has_match_case_insensitive(search_str, matches)
         assert are_scores_descending(matches)

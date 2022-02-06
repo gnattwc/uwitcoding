@@ -24,17 +24,16 @@ def has_match(search_str, dict):
 @ddt
 class ParseQueryTest(unittest.TestCase):
     """test parse_query"""
-    lock = Lock()
     dns_db = None
 
     @classmethod
-    def get_db(cls):
-        if ParseQueryTest.dns_db is None:
-            ParseQueryTest.lock.acquire()
-            load_mocks = LoadMocksBasic()
-            cls.dns_db = DnsDatabase(load_mocks(), searchdb.search_db_all_text_lower)
-            ParseQueryTest.lock.release()
-        return ParseQueryTest.dns_db
+    def setUpClass(cls):
+        load_mocks = LoadMocksBasic()
+        cls.dns_db = DnsDatabase(load_mocks(), searchdb.search_db_all_text_lower)
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.dns_db = None
 
     @data(
         ("washington",),
@@ -55,5 +54,5 @@ class ParseQueryTest(unittest.TestCase):
     )
     @unpack
     def test_parse_query(self, search_str):
-        dict = parse_query(ParseQueryTest.get_db(), search_str)
+        dict = parse_query(ParseQueryTest.dns_db, search_str)
         assert has_match(search_str, dict)
