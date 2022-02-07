@@ -4,6 +4,7 @@ import logging
 from dns.dnsrecord import DnsRecord
 from searchdb import SearchScore
 
+
 class DnsDatabase:
     '''a searchable database of DnsRecords'''
 
