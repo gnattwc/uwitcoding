@@ -44,8 +44,8 @@ if __name__ == '__main__':
     pprint(parse_query(db, "english 192.168"), sort_dicts=False)
     print()
 
-    db.search_score_fn = searchdb.search_db_fields_only
-    print('*** search only within the dns record fields')
+    db.search_score_fn = searchdb.search_db_fields_only_lower
+    print('*** search only within the dns record fields case insensitive')
     pprint(parse_query(db, "medicine"), sort_dicts=False)
     print()
     pprint(parse_query(db, "english some UW Medicine"), sort_dicts=False)

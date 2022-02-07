@@ -1,4 +1,4 @@
-from dataclasses import dataclass, asdict
+from dataclasses import astuple, dataclass, asdict
 
 
 @dataclass(order=True, frozen=True)
@@ -8,6 +8,10 @@ class DnsRecord:
     type: str
     data: str
 
-    def items(self):
-        '''as dictionary items'''
-        return asdict(self).items()
+    def asdict(self):
+        '''as dictionary'''
+        return asdict(self)
+
+    def astuple(self):
+        '''return values as tuple'''
+        return astuple(self)

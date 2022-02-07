@@ -37,7 +37,7 @@ def search_db_fields_only(r: DnsRecord, *terms) -> int:
     >>> search_db_fields_only_lower(d, 'name')
     2
     '''
-    counts = (v.count(t) for t in terms for k, v in r.items())
+    counts = (v.count(t) for t in terms for v in r.astuple())
     return sum(counts)
 
 
@@ -49,7 +49,7 @@ def search_db_fields_only_lower(r: DnsRecord, *terms) -> int:
     >>> search_db_fields_only_lower(d, 'name')
     2
     '''
-    counts = (v.lower().count(t.lower()) for t in terms for k, v in r.items())
+    counts = (v.lower().count(t.lower()) for t in terms for v in r.astuple())
     return sum(counts)
 
 
