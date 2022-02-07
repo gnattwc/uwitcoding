@@ -1,12 +1,15 @@
 from random import randint
-from dataclasses import asdict
+from typing import Protocol
 
-from dns import DnsRecord
+from dns.dnsrecord import DnsRecord
 
 # sample: DnsRecord(name='www.uwmedicine.org.', type='TXT', data='THE UW Medicine')
 
 # these functions are used to determine search score - higher the better
 
+class SearchScore(Protocol):
+    def __call__(self, r: DnsRecord, *terms, **kwargs):
+        pass
 
 
 def search_db_all_text(r: DnsRecord, *terms) -> int:
