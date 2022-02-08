@@ -8,11 +8,11 @@ from dns.dnsrecord import DnsRecord
 # these functions are used to determine search score - higher the better
 
 class SearchScore(Protocol):
-    def __call__(self, r: DnsRecord, *terms, **kwargs):
+    def __call__(self, r: DnsRecord, *terms, **kwargs) -> int:
         pass
 
 
-def search_db_all_text(r: DnsRecord, *terms) -> int:
+def search_db_all_text(r: DnsRecord, *terms, **kwargs) -> int:
     '''str.count on DnsRecord's string
 
     >>> d = DnsRecord("mynameis", "TXT", "my name is")
@@ -23,13 +23,13 @@ def search_db_all_text(r: DnsRecord, *terms) -> int:
     return sum(counts)
 
 
-def search_db_all_text_lower(r: DnsRecord, *terms) -> int:
+def search_db_all_text_lower(r: DnsRecord, *terms, **kwargs) -> int:
     # str.count on DnsRecord's string
     counts = (str(r).lower().count(t.lower()) for t in terms)
     return sum(counts)
 
 
-def search_db_fields_only(r: DnsRecord, *terms) -> int:
+def search_db_fields_only(r: DnsRecord, *terms, **kwargs) -> int:
     '''
     str.count only in the DnsRecord fields case insensitive
 
@@ -41,7 +41,7 @@ def search_db_fields_only(r: DnsRecord, *terms) -> int:
     return sum(counts)
 
 
-def search_db_fields_only_lower(r: DnsRecord, *terms) -> int:
+def search_db_fields_only_lower(r: DnsRecord, *terms, **kwargs) -> int:
     '''
     str.count only in the DnsRecord fields case insensitive
 
@@ -53,11 +53,11 @@ def search_db_fields_only_lower(r: DnsRecord, *terms) -> int:
     return sum(counts)
 
 
-def search_db_all_text_by_type(r: DnsRecord, *terms, type='CNAME') -> int:
+def search_db_all_text_by_type(r: DnsRecord, *terms, type='CNAME', **kwargs) -> int:
     # str.count on DnsRecord's string limited by type
     counts = (str(r).count(t) for t in terms if r.type.lower() == type.lower())
     return sum(counts)
 
 
-def search_db_random(r: DnsRecord, *terms):
+def search_db_random(r: DnsRecord, *terms, **kwargs):
     return randint(1, 20)

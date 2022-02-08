@@ -1,5 +1,6 @@
 import logging
 import sys
+from typing import Dict
 
 from dns import DnsDatabase
 from loaddnsdb import LoadMocksBasic
@@ -14,7 +15,7 @@ def parse_query(db: DnsDatabase, search_str: str) -> dict:
     matches = db.search(*terms)
     logging.info(f"matches={matches}")
     # transpose matches for output requirement
-    dict = {'name': [], 'type': [], 'data': []}  # type: ignore
+    dict : Dict = {'name': [], 'type': [], 'data': []}
     for (_, r) in matches:
         dict['name'].append(r.name)
         dict['type'].append(r.type)
@@ -37,7 +38,7 @@ if __name__ == '__main__':
     # sample: DnsRecord(name='www.uwmedicine.org.', type='TXT', data='THE UW Medicine')
     # this allows very specific search strings
     # output is sorted by number of string matches (str.count())
-    pprint(parse_query(db, "name=\'www.uwmedicine.org.\'"), sort_dicts=False)
+    pprint(parse_query(db, "name=www.uwmedicine.org."), sort_dicts=False)
     print()
     pprint(parse_query(db, "txt"), sort_dicts=False)
     print()
