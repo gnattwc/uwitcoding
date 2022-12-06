@@ -1,5 +1,5 @@
 # uwitcoding
-UW IT Coding Challenge
+This code was written as part of a UW IT Coding Challenge as described in [problem.md](problem.md)
 
 ## setup
 - install python 3.10 - e.g. https://www.anaconda.com/products/individual
